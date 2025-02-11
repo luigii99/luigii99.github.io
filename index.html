@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Security Animation</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: black;
+            font-family: Arial, sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        canvas {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .content {
+            z-index: 1;
+            position: relative;
+        }
+        .icon {
+            width: 200px;
+            height: 220px;
+            margin-bottom: 30px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .icon img {
+            width: 100%;
+            height: 100%;
+        }
+        h1 {
+            font-size: 3rem;
+            opacity: 1;
+            transition: opacity 2s ease-in-out;
+            margin-bottom: 30px;
+        }
+        .additional-text {
+            font-size: 1.5rem;
+            opacity: 1;
+            color: white;
+            margin-top: 20px;
+            transition: opacity 2s ease-in-out;
+        }
+        .contact {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+        }
+        .contact a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            background: transparent;
+            border: none;
+            padding: 10px;
+            transition: background 0.3s ease, transform 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        .contact a:hover {
+            background: rgba(0, 255, 0, 0.3);
+            transform: scale(1.05);
+        }
+        .contact .email, .contact .linkedin {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .contact img {
+            width: 60px;
+            height: 60px;
+        }
+        .fade-out {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrixCanvas"></canvas>
+    
+    <div class="content">
+        <!-- Icona centrata sopra il testo centrale -->
+        <div class="icon">
+            <img src="foto_luigi.jpg" alt="Icon" />
+        </div>
+
+        <h1 id="animatedText">LUIGI MARESCA</h1>
+
+        <!-- Nuovo testo aggiuntivo sotto il testo principale -->
+        <div class="additional-text" id="additionalText">
+            COMPUTER ENGINEER
+            <div class="additional-text" id="additionalText">
+                
+        <div class
+        <!-- Campi di contatto con icone centrati -->
+        <div class="contact">
+            <div class="email">
+                <img src="mail.webp" alt="Email Icon" />
+                <a href="mailto:lovigi0099@gmail.com" id="emailLink">lovigi0099@gmail.com</a>
+            </div>
+            <div class="linkedin">
+                <img src="linkedin.png" alt="LinkedIn Icon" />
+                <a href="https://www.linkedin.com/in/luigi-maresca-892385272" id="linkedinLink" target="_blank">LUIGI MARESCA </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById("matrixCanvas");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const characters = "01ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*()".split("");
+        const fontSize = 14;
+        const columns = Math.floor(canvas.width / fontSize);
+        const drops = Array(columns).fill(0);
+
+        function draw() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "#0F0";
+            ctx.font = `${fontSize}px monospace`;
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters[Math.floor(Math.random() * characters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 50);
+
+        // Dissolving text animation
+        const animatedText = document.getElementById("animatedText");
+        const additionalText = document.getElementById("additionalText");
+
+        let opacity1 = 1;
+        let opacity2 = 1;
+
+        setInterval(() => {
+            opacity1 -= 0.05;
+            if (opacity1 <= 0) {
+                opacity1 = 1; // Reset opacity to start over
+            }
+            animatedText.style.opacity = opacity1;
+
+            opacity2 -= 0.05;
+            if (opacity2 <= 0) {
+                opacity2 = 1; // Reset opacity to start over
+            }
+            additionalText.style.opacity = opacity2;
+        }, 100);
+    </script>
+</body>
+</html>
