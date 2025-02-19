@@ -10,7 +10,7 @@
             overflow: hidden;
             background: rgb(6, 0, 0);
             font-family: Arial, sans-serif;
-            color: rgb(224, 198, 198);
+            color: rgb(253, 242, 242);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -60,6 +60,13 @@
             justify-content: center;
             align-items: center;
         }
+        .contact .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 300px;
+            justify-content: flex-start;
+        }
         .contact a {
             text-decoration: none;
             color: rgb(243, 241, 252);
@@ -75,17 +82,9 @@
             background: rgba(232, 231, 237, 0.012);
             transform: scale(1.05);
         }
-        .contact .email, .contact .linkedin {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
         .contact img {
-            width: 60px;
-            height: 60px;
-        }
-        .fade-out {
-            opacity: 0;
+            width: 40px;
+            height: 40px;
         }
     </style>
 </head>
@@ -93,28 +92,30 @@
     <canvas id="matrixCanvas"></canvas>
     
     <div class="content">
-        <!-- Icona centrata sopra il testo centrale -->
         <div class="icon">
             <img src="foto_luigi.jpg" alt="Icon" />
         </div>
-
         <h1 id="animatedText">LUIGI MARESCA</h1>
 
-        <!-- Nuovo testo aggiuntivo sotto il testo principale -->
-        <div class="additional-text" id="additionalText">
-            COMPUTER ENGINEER
-            <div class="additional-text" id="additionalText">
-                
-        <div class
-        <!-- Campi di contatto con icone centrati -->
+        <div class="additional-text" id="additionalText">COMPUTER ENGINEER</div>
+        <h1>     </h1>  
+        
         <div class="contact">
-            <div class="email">
-                <img src="mail.webp" alt="Email Icon" />
-                <a href="mailto:lovigi0099@gmail.com" id="emailLink">lovigi0099@gmail.com</a>
+            <div class="contact-item">
+                <img src="passione.png" alt="Bio Icon" />
+                <span id="bioText">Passionate about cybersecurity and software development</span>
             </div>
-            <div class="linkedin">
+            <div class="contact-item">
+                <img src="mail.webp" alt="Email Icon" />
+                <a href="mailto:lovigi0099@gmail.com" id="emailLink">l*******@gmail.com</a>
+            </div>
+            <div class="contact-item">
                 <img src="linkedin.png" alt="LinkedIn Icon" />
-                <a href="https://www.linkedin.com/in/luigi-maresca-892385272" id="linkedinLink" target="_blank">LUIGI MARESCA </a>
+                <a href="https://www.linkedin.com/in/luigi-maresca-892385272" id="linkedinLink" target="_blank">LUIGI MARESCA</a>
+            </div>
+            <div class="contact-item">
+                <img src="telefono.png" alt="Phone Icon" />
+                <a href="tel:+393248715818" id="phoneLink">+39324****818</a>
             </div>
         </div>
     </div>
@@ -150,27 +151,6 @@
         }
 
         setInterval(draw, 50);
-
-        // Dissolving text animation
-        const animatedText = document.getElementById("animatedText");
-        const additionalText = document.getElementById("additionalText");
-
-        let opacity1 = 1;
-        let opacity2 = 1;
-
-        setInterval(() => {
-            opacity1 -= 0.05;
-            if (opacity1 <= 0) {
-                opacity1 = 1; // Reset opacity to start over
-            }
-            animatedText.style.opacity = opacity1;
-
-            opacity2 -= 0.05;
-            if (opacity2 <= 0) {
-                opacity2 = 1; // Reset opacity to start over
-            }
-            additionalText.style.opacity = opacity2;
-        }, 100);
     </script>
 </body>
 </html>
